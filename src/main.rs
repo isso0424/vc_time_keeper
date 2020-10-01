@@ -1,3 +1,4 @@
+mod discord;
 mod timer;
 
 #[tokio::main]

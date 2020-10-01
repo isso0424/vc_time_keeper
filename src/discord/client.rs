@@ -5,6 +5,7 @@ struct Handler;
 
 impl EventHandler for Handler {}
 
+#[allow(dead_code)]
 pub fn start(token: String) -> CommandResult {
     let mut client = Client::new(token, Handler)?;
     client.with_framework(StandardFramework::new().configure(|c| c.prefix("!")));

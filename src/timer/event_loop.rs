@@ -1,11 +1,15 @@
+use serenity::model::id::{ChannelId, GuildId};
 use std::time::Duration;
-use tokio::time::{self, Interval};
+use tokio::time;
 
-pub async fn create_loop(sleep_sec: u64) {
+pub async fn lazy_event(
+    sleep_sec: u64,
+    guild_id: GuildId,
+    member_id: ChannelId,
+    event: fn(GuildId, ChannelId),
+) {
     let duration = Duration::from_secs(sleep_sec);
     let mut interval = time::interval(duration);
-    loop {
-        println!("Hello");
-        interval.tick().await;
-    }
+    interval.tick().await;
+    event(guild_id, member_id);
 }

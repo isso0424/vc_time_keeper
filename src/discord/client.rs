@@ -8,7 +8,7 @@ impl EventHandler for Handler {}
 #[allow(dead_code)]
 pub fn start(token: String) -> CommandResult {
     let mut client = Client::new(token, Handler)?;
-    client.with_framework(StandardFramework::new().configure(|c| c.prefix("!")));
+    client.with_framework(StandardFramework::new().configure(|c| c.prefix("!vcTimer")));
 
     if let Err(why) = client.start() {
         println!(

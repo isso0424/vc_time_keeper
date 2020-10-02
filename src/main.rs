@@ -1,7 +1,9 @@
 mod discord;
 mod timer;
 
-#[tokio::main]
-async fn main() {
-    println!("Hello, world!");
+use std::env;
+
+fn main() {
+    let token = env::var("DISCORD_TOKEN").expect("token");
+    discord::client::start(token.to_string()).unwrap();
 }

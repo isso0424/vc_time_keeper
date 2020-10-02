@@ -1,11 +1,10 @@
 use serenity::client::Context;
 use serenity::model::id::{GuildId, UserId};
 use serenity::Error;
+use std::thread::sleep;
 use std::time::Duration;
-use tokio::time;
 
-#[allow(dead_code)]
-pub async fn lazy_event(
+pub fn lazy_event(
     sleep_sec: u64,
     guild_id: GuildId,
     member_id: UserId,
@@ -13,7 +12,6 @@ pub async fn lazy_event(
     event: fn(GuildId, UserId, &Context) -> Result<(), Error>,
 ) {
     let duration = Duration::from_secs(sleep_sec);
-    let mut interval = time::interval(duration);
-    interval.tick().await;
+    sleep(duration);
     let _ = event(guild_id, member_id, context);
 }

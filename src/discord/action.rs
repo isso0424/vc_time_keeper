@@ -6,7 +6,6 @@ use serenity::model::{
 };
 use serenity::Error;
 
-#[allow(dead_code)]
 pub fn kick(guild_id: GuildId, user_id: UserId, context: &Context) -> Result<(), Error> {
     let guild = Guild::get(context, guild_id)?;
     let member = guild.member(context, user_id)?;

@@ -42,7 +42,7 @@ pub fn set(context: &mut Context, message: &Message) -> CommandResult {
         return Ok(());
     }
 
-    let raw_date = match content.iter().nth(2) {
+    let raw_date = match content.get(2) {
         Some(date) => date,
         None => return Ok(()),
     };

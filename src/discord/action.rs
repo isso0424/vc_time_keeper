@@ -6,12 +6,14 @@ use serenity::model::{
 };
 use serenity::Error;
 
-#[allow(dead_code)]
+const DEAFEN_CHANNEL_ID: u64 = 696340084370178079;
+
 pub fn kick(guild_id: GuildId, user_id: UserId, context: &Context) -> Result<(), Error> {
     let guild = Guild::get(context, guild_id)?;
     let member = guild.member(context, user_id)?;
     member.edit(context, |edit_member: &mut EditMember| {
-        edit_member.voice_channel(ChannelId::default())
+        let channel_id: ChannelId = From::from(DEAFEN_CHANNEL_ID);
+        edit_member.voice_channel(channel_id)
     })?;
 
     Ok(())

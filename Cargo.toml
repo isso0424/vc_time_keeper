@@ -10,3 +10,4 @@ edition = "2018"
 serenity = { version = "0.8.7", features = ["gateway", "rustls_backend"] }
 tokio =  { version = "0.2.22", features=["full"] }
 chrono = "0.4.19"
+dotenv = "0.15.0"

@@ -5,14 +5,14 @@ use serenity::model::{
     id::{ChannelId, GuildId, UserId},
 };
 use serenity::Error;
-
-const DEAFEN_CHANNEL_ID: u64 = 696340084370178079;
+use std::env;
 
 pub fn kick(guild_id: GuildId, user_id: UserId, context: &Context) -> Result<(), Error> {
+    let channel_id: u64 = env::var("CHANNEL_ID").expect("0").parse().expect("0");
     let guild = Guild::get(context, guild_id)?;
     let member = guild.member(context, user_id)?;
     member.edit(context, |edit_member: &mut EditMember| {
-        let channel_id: ChannelId = From::from(DEAFEN_CHANNEL_ID);
+        let channel_id: ChannelId = From::from(channel_id);
         edit_member.voice_channel(channel_id)
     })?;
 
